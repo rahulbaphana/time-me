@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ExpensiveDataFetcher {
-    public List<String> fetchData(Integer data) {
+    public List<String> fetchDataIn(long time) {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(time);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -20,5 +20,14 @@ public class ExpensiveDataFetcher {
             e.printStackTrace();
         }
         return "Hello World!";
+    }
+
+    public void sayHelloIn(long timeToSayHello) {
+        try {
+            Thread.sleep(timeToSayHello);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Hello");
     }
 }

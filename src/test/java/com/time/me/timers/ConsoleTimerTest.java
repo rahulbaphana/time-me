@@ -7,14 +7,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TimeMeTest {
+class ConsoleTimerTest {
     @Test
-    void should_time_given_function() {
+    void should_print_to_console_time_taken_by_any_function_in_millis() {
         ExpensiveDataFetcher dataFetcher = new ExpensiveDataFetcher();
 
-        Timer.timeMe(() -> System.out.println("foo"));
-        String message = Timer.timeMe(dataFetcher::greet);
-        List<String> someDataReturned = Timer.timeMe(() -> dataFetcher.fetchData(123));
+        ConsoleTimer.timeMe(() -> System.out.println("foo"));
+        String message = ConsoleTimer.timeMe(dataFetcher::greet);
+        List<String> someDataReturned = ConsoleTimer.timeMe(() -> dataFetcher.fetchDataIn(123l));
 
         assertEquals("Hello World!", message);
         assertEquals("[Hi, Hello]", someDataReturned.toString());

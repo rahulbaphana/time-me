@@ -2,38 +2,35 @@ package com.time.me.timers;
 
 import com.time.me.actions.Action;
 import com.time.me.actions.NoAction;
+import com.time.me.timers.results.TimedResult;
 
 import java.util.concurrent.Callable;
 
-public enum Timer {
+public enum ResultTimer {
     ;
 
-    public static void timeMe(Runnable runnable) {
+    public static TimedResult timeMe(Runnable runnable) {
         long startTime = System.currentTimeMillis();
-        long timeTakenForExecution;
         NoAction noAction = () -> {
             runnable.run();
             return null;
         };
         noAction.time();
-        timeTakenForExecution = (System.currentTimeMillis() - startTime);
-        System.out.println("Time taken :: " + timeTakenForExecution + " mills");
+        return new TimedResult<Void>((System.currentTimeMillis() - startTime));
     }
 
-    public static <T> T timeMe(Callable<T> callableFunction) {
-        Action<T> tAction = () -> {
+    public static <T> TimedResult<T> timeMe(Callable<T> callableFunction) {
+        Action<TimedResult<T>> tAction = () -> {
             long startTime = System.currentTimeMillis();
             long timeTakenForExecution;
             try {
                 T result = callableFunction.call();
                 timeTakenForExecution = (System.currentTimeMillis() - startTime);
-                System.out.println("Time taken :: " + timeTakenForExecution + " mills");
-                return result;
+                return new TimedResult<>(result, timeTakenForExecution);
             } catch (Exception e) {
                 e.printStackTrace();
                 timeTakenForExecution = (System.currentTimeMillis() - startTime);
-                System.out.println("Time taken :: " + timeTakenForExecution + " mills");
-                return null;
+                return new TimedResult<>(null, timeTakenForExecution);
             }
         };
         return tAction.time();
