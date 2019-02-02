@@ -16,7 +16,7 @@ class TimeMeTest {
 
         timeMe(() -> System.out.println("foo"));
 
-        String message = timeMe(() -> dataFetcher.greet());
+        String message = timeMe(dataFetcher::greet);
         List<String> someDataReturned = timeMe(() -> dataFetcher.fetchData(123));
 
         assertEquals("Hello World!", message);

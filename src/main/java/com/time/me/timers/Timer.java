@@ -8,8 +8,11 @@ import java.util.concurrent.Callable;
 public class Timer {
     public static void timeMe(Runnable runnable) {
         long startTime = System.currentTimeMillis();
-        long timeTakenForExecution = 0l;
-        NoAction noAction = () -> runnable.run();
+        long timeTakenForExecution;
+        NoAction noAction = () -> {
+            runnable.run();
+            return null;
+        };
         noAction.execute();
         timeTakenForExecution = (System.currentTimeMillis() - startTime);
         System.out.println("Time taken :: " + timeTakenForExecution + " mills");
@@ -18,7 +21,7 @@ public class Timer {
     public static <T> T timeMe(Callable<T> runnable) {
         Action<T> tAction = () -> {
             long startTime = System.currentTimeMillis();
-            long timeTakenForExecution = 0l;
+            long timeTakenForExecution;
             try {
                 T result = runnable.call();
                 timeTakenForExecution = (System.currentTimeMillis() - startTime);
