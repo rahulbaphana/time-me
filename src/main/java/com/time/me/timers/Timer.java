@@ -5,7 +5,9 @@ import com.time.me.actions.NoAction;
 
 import java.util.concurrent.Callable;
 
-public class Timer {
+public enum Timer {
+    ;
+
     public static void timeMe(Runnable runnable) {
         long startTime = System.currentTimeMillis();
         long timeTakenForExecution;
@@ -13,17 +15,17 @@ public class Timer {
             runnable.run();
             return null;
         };
-        noAction.execute();
+        noAction.time();
         timeTakenForExecution = (System.currentTimeMillis() - startTime);
         System.out.println("Time taken :: " + timeTakenForExecution + " mills");
     }
 
-    public static <T> T timeMe(Callable<T> runnable) {
+    public static <T> T timeMe(Callable<T> callableFunction) {
         Action<T> tAction = () -> {
             long startTime = System.currentTimeMillis();
             long timeTakenForExecution;
             try {
-                T result = runnable.call();
+                T result = callableFunction.call();
                 timeTakenForExecution = (System.currentTimeMillis() - startTime);
                 System.out.println("Time taken :: " + timeTakenForExecution + " mills");
                 return result;
@@ -34,6 +36,6 @@ public class Timer {
                 return null;
             }
         };
-        return tAction.execute();
+        return tAction.time();
     }
 }
