@@ -29,4 +29,14 @@ class ResultTimerTest {
 
         assertTrue(result.getTimeTakenInMillis() >= timeToFetchData);
     }
+
+    @Test
+    void should_return_time_taken_for_a_non_void_function_when_exception_is_thrown() {
+        ExpensiveDataFetcher dataFetcher = new ExpensiveDataFetcher();
+
+        long timeToFetchData = 123l;
+        TimedResult<String> result = timeMe(() -> dataFetcher.throwException(timeToFetchData));
+
+        assertTrue(result.getTimeTakenInMillis() >= timeToFetchData);
+    }
 }

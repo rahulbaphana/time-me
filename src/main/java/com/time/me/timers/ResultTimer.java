@@ -30,7 +30,7 @@ public enum ResultTimer {
             } catch (Exception e) {
                 e.printStackTrace();
                 timeTakenForExecution = (System.currentTimeMillis() - startTime);
-                return new TimedResult<>(null, timeTakenForExecution);
+                return new TimedResult<>(timeTakenForExecution);
             }
         };
         return tAction.time();

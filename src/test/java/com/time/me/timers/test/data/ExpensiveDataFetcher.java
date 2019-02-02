@@ -30,4 +30,13 @@ public class ExpensiveDataFetcher {
         }
         System.out.println("Hello");
     }
+
+    public String throwException(long inTime) {
+        try {
+            Thread.sleep(inTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        throw new RuntimeException("Kuch toh gadbad hai daya!");
+    }
 }
