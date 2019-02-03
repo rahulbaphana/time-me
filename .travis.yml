@@ -8,6 +8,12 @@ notifications:
   email:
     - rahuldashing@gmail.com
 
+before_install:
+  - pip install --user codecov
+
+after_success:
+  - codecov
+
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 
