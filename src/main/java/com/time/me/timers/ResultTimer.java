@@ -1,6 +1,5 @@
 package com.time.me.timers;
 
-import com.sun.istack.internal.NotNull;
 import com.time.me.actions.Action;
 import com.time.me.actions.NoAction;
 import com.time.me.timers.results.TimedResult;
@@ -19,7 +18,7 @@ public enum ResultTimer {
      * @return TimedResult
      * @see com.time.me.timers.results.TimedResult
      */
-    public static TimedResult timeMe(@NotNull Runnable runnable) {
+    public static TimedResult timeMe(Runnable runnable) {
         long startTime = System.currentTimeMillis();
         NoAction noAction = () -> {
             runnable.run();
@@ -35,7 +34,7 @@ public enum ResultTimer {
      * @return TimedResult<T>
      * @see com.time.me.timers.results.TimedResult
      */
-    public static <T> TimedResult<T> timeMe(@NotNull Callable<T> callableFunction) {
+    public static <T> TimedResult<T> timeMe(Callable<T> callableFunction) {
         Action<TimedResult<T>> timedAction = () -> {
             long startTime = System.currentTimeMillis();
             long timeTakenForExecution;
