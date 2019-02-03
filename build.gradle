@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'com.gradle.build-scan' version '2.1'
+    id 'com.gradle.build-scan' version '1.16'
 }
 
 group 'com.time.me'
