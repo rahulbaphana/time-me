@@ -2,7 +2,7 @@
 
 <div align="center">
     <b><em>Time Me</em></b><br>
-    The simple java methods timer;
+    A simple java functions timer;
 </div>
 
 <div align="center">
