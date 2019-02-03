@@ -20,12 +20,13 @@ public enum ResultTimer {
      */
     public static TimedResult timeMe(Runnable runnable) {
         long startTime = System.currentTimeMillis();
-        NoAction noAction = () -> {
-            runnable.run();
-            return null;
-        };
-        noAction.time();
+        execute(runnable);
         return new TimedResult<Void>((System.currentTimeMillis() - startTime));
+    }
+
+    private static Void execute(Runnable runnable) {
+        runnable.run();
+        return null;
     }
 
     /**
@@ -35,15 +36,17 @@ public enum ResultTimer {
      * @see com.time.me.timers.results.TimedResult
      */
     public static <T> TimedResult<T> timeMe(Callable<T> callableFunction) {
-        Action<TimedResult<T>> timedAction = () -> {
-            long startTime = System.currentTimeMillis();
-            try {
-                return new TimedResult<>(callableFunction.call(), (System.currentTimeMillis() - startTime));
-            } catch (Exception e) {
-                e.printStackTrace();
-                return new TimedResult<>((System.currentTimeMillis() - startTime));
-            }
-        };
+        Action<TimedResult<T>> timedAction = () -> execute(callableFunction);
         return timedAction.time();
+    }
+
+    private static <T> TimedResult<T> execute(Callable<T> callableFunction) {
+        long startTime = System.currentTimeMillis();
+        try {
+            return new TimedResult<>(callableFunction.call(), (System.currentTimeMillis() - startTime));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new TimedResult<>((System.currentTimeMillis() - startTime));
+        }
     }
 }
