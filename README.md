@@ -23,6 +23,7 @@
 * [Example](https://github.com/rahulbaphana/time-me#example)
     * [Console Timer](https://github.com/rahulbaphana/time-me#1-console-timer)
     * [Result Timer](https://github.com/rahulbaphana/time-me#2-result-timer)
+* [Contributors](https://github.com/rahulbaphana/time-me#contributors)
 * [License](https://github.com/rahulbaphana/time-me#license)
 
 ## Latest news
@@ -140,6 +141,10 @@ The output on console will look as below:```
 ```java
 The function took :: 3 millis
 ```
+
+## Contributors
+* [Rahul Baphana](https://github.com/rahulbaphana)
+* [Mausam Yede](https://github.com/mausamyede) 
 
 ## License
 MIT License
