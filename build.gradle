@@ -4,6 +4,11 @@ plugins {
     id 'com.gradle.build-scan' version '1.16'
 }
 
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+}
+
 jacoco {
     toolVersion = "0.8.1"
     reportsDir = file("$buildDir/customJacocoReportDir")
@@ -21,10 +26,6 @@ group 'com.time.me'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
 
 dependencies {
     testCompileOnly(
@@ -47,4 +48,8 @@ buildScan {
     termsOfServiceAgree = 'yes'
 
     publishAlways()
+}
+
+repositories {
+    mavenCentral()
 }
