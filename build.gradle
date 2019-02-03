@@ -23,7 +23,7 @@ jacocoTestReport {
     }
 }
 
-group 'com.time.me'
+group 'com.timeafunction'
 version '0.1-SNAPSHOT'
 
 sourceCompatibility = 1.8
@@ -58,7 +58,7 @@ repositories {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'com.time.me'
+            groupId = 'com.timeafunction'
             artifactId = 'time-me'
             version = '0.1-SNAPSHOT'
 

@@ -1,4 +1,4 @@
-package com.time.me.timers.test.data;
+package com.timeafunction.timers.test.data;
 
 import java.util.Arrays;
 import java.util.List;

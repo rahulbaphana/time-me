@@ -1,6 +1,6 @@
-package com.time.me.timers;
+package com.timeafunction.timers;
 
-import com.time.me.timers.test.data.ExpensiveDataFetcher;
+import com.timeafunction.timers.test.data.ExpensiveDataFetcher;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

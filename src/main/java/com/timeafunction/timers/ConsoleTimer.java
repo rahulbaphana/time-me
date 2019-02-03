@@ -1,6 +1,6 @@
-package com.time.me.timers;
+package com.timeafunction.timers;
 
-import com.time.me.timers.results.TimedResult;
+import com.timeafunction.timers.results.TimedResult;
 
 import java.util.concurrent.Callable;
 

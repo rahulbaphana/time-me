@@ -1,4 +1,4 @@
-package com.time.me.timers.results;
+package com.timeafunction.timers.results;
 
 /**
  *

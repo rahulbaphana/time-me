@@ -1,4 +1,4 @@
-package com.time.me.actions;
+package com.timeafunction.actions;
 
 public interface Timeable<T> {
     T time();
