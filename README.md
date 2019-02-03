@@ -15,6 +15,15 @@
 
 ***
 
+## Table of contents:
+* [Latest news](latest-news)
+* [What is time-me?](what-is-time-me)
+* [Core features](core-features)
+* [Project setup after cloning](project-setup-after-cloning)
+* [Example](example)
+    * [Console Timer](example)
+    * [Result Timer](example)
+
 ## Latest news
 * Keep an eye on this, loads of features coming soon :
     * Timing inside futures
@@ -28,18 +37,38 @@ and many more...
 * This library also allows not just time ```void``` functions but also functions that return ```result``` and also retains result after execution.
 
 ## Core features
- * Lightweight library and easy to learn API
- * Timing ```void``` functions
- * Timing ```result``` oriented functions
- * Timing in milliseconds
- * Console printer timer with/without results
- * Non-console printer timer with/without results 
+* Lightweight library and easy to learn API
+* Timing ```void``` functions
+* Timing ```result``` oriented functions
+* Timing in milliseconds
+* Console printer timer with/without results
+* Non-console printer timer with/without results 
+ 
+## Project setup after cloning
+* Build 
+```
+$ ./gradlew build
+```
+
+* Run tests
+```
+$ ./gradlew test
+```
+
+* Generate java docs
+```
+$ ./gradlew javadoc
+```
+Open java doc in browser from location : 
+```
+<PATH_TO_PROJECT>/build/docs/javadoc/index.html
+```
  
 ## Example
 
 ### First, choose the type of timer you need..
 
-#### 1. Console Timer:
+#### 1. Console Timer
 
 ##### Below class[```DataFetcher```] function[```fetchDataIn(long time)```] needs to be tested for how much time it took to fetch:
 ```java
@@ -71,7 +100,7 @@ The same can be used on ```void``` functions as below:
 ConsoleTimer.timeMe(() -> new DataFetcher().greet());
 ```
 
-#### 2. Result Timer:
+#### 2. Result Timer
 
 ##### Below class[```DataFetcher```] function[```fetchDataIn(long time)```] needs to be tested for how much time it took to fetch:
 ```java
