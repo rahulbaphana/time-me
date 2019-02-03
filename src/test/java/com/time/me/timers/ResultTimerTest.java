@@ -15,7 +15,7 @@ class ResultTimerTest {
         ExpensiveDataFetcher dataFetcher = new ExpensiveDataFetcher();
 
         long timeToSayHello = 10l;
-        TimedResult<Void> result = timeMe(() -> dataFetcher.sayHelloIn(timeToSayHello));
+        TimedResult result = timeMe(() -> dataFetcher.sayHelloIn(timeToSayHello));
 
         assertTrue(result.getTimeTakenInMillis() >= timeToSayHello);
     }
