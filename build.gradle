@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'maven-publish'
     id 'com.gradle.build-scan' version '1.16'
 }
 
@@ -23,7 +24,7 @@ jacocoTestReport {
 }
 
 group 'com.time.me'
-version '1.0-SNAPSHOT'
+version '0.1-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
@@ -52,4 +53,31 @@ buildScan {
 
 repositories {
     mavenCentral()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.time.me'
+            artifactId = 'time-me'
+            version = '0.1-SNAPSHOT'
+
+            from components.java
+        }
+    }
+}
+
+task packageJavadoc(type: Jar, dependsOn: 'javadoc') {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
+task packageSources(type: Jar, dependsOn: 'classes') {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives packageJavadoc
+    archives packageSources
 }
