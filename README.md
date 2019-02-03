@@ -19,8 +19,7 @@
 * Keep an eye on this, loads of features coming soon :
     * Timing inside futures
     * Timing in nano-seconds
-    * Allowing timing messages to be used
-
+    
 and many more...
 
 ## What is time-me? 
