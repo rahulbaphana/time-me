@@ -26,7 +26,7 @@ and many more...
 ## What is time-me? 
 * This small library helps time a java function.
 * Checking timing for functions where there are no frameworks involved inspired to write this library.
-* This library also allows not just time ```void``` methods but also methods that return ```result``` and also retains result after execution.
+* This library also allows not just time ```void``` functions but also functions that return ```result``` and also retains result after execution.
 
 ## Core features
  * Lightweight library and easy to learn API
@@ -67,7 +67,7 @@ The output on console will look as below:
 ```
 Timed result :: TimedResult{result=[Hi, Hello], timeTakenInMillis=1003 millis}
 ```
-The same can be used on ```void``` methods as below:
+The same can be used on ```void``` functions as below:
 ```java
 ConsoleTimer.timeMe(() -> new DataFetcher().greet());
 ```
@@ -102,7 +102,7 @@ The output on console will look as below:
 The function took :: 1003 millis
 The function result :: [Hi, Hello]
 ```
-The same can be used on ```void``` methods as below:
+The same can be used on ```void``` functions as below:
 ```java
 TimedResult result = ResultTimer.timeMe(() -> new DataFetcher().greet());
 System.out.println("The function took :: "+timedResult.getTimeTakenInMillis()+ " millis")
