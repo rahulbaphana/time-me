@@ -14,8 +14,8 @@ public enum ResultTimer {
     ;
 
     /**
-     * @param runnable
-     * @return TimedResult
+     * @param runnable is a function with return type as 'void'
+     * @return TimedResult that holds time taken to execute in millis
      * @see com.time.me.timers.results.TimedResult
      */
     public static TimedResult timeMe(Runnable runnable) {
@@ -29,23 +29,19 @@ public enum ResultTimer {
     }
 
     /**
-     * @param callableFunction
-     * @param <T>
-     * @return TimedResult<T>
+     * @param callableFunction is a function that returns a result of Type 'T'
+     * @param <T> is the type of object returned by function execution
+     * @return TimedResult holds time taken and result of the 'callableFunction' param
      * @see com.time.me.timers.results.TimedResult
      */
     public static <T> TimedResult<T> timeMe(Callable<T> callableFunction) {
         Action<TimedResult<T>> timedAction = () -> {
             long startTime = System.currentTimeMillis();
-            long timeTakenForExecution;
             try {
-                T result = callableFunction.call();
-                timeTakenForExecution = (System.currentTimeMillis() - startTime);
-                return new TimedResult<>(result, timeTakenForExecution);
+                return new TimedResult<>(callableFunction.call(), (System.currentTimeMillis() - startTime));
             } catch (Exception e) {
                 e.printStackTrace();
-                timeTakenForExecution = (System.currentTimeMillis() - startTime);
-                return new TimedResult<>(timeTakenForExecution);
+                return new TimedResult<>((System.currentTimeMillis() - startTime));
             }
         };
         return timedAction.time();

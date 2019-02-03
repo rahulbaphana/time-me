@@ -1,8 +1,9 @@
 package com.time.me.timers.results;
 
 /**
+ *
  * TimedResult
- * @param <T>
+ * @param <T> is the return type of the result
  */
 public class TimedResult<T> {
     private T result;
@@ -10,7 +11,7 @@ public class TimedResult<T> {
 
     /**
      *
-     * @param timeTakenInMillis
+     * @param timeTakenInMillis gives the time taken to get the result by a function
      */
     public TimedResult(Long timeTakenInMillis) {
         this.timeTakenInMillis = timeTakenInMillis;
@@ -18,8 +19,8 @@ public class TimedResult<T> {
 
     /**
      *
-     * @param result
-     * @param timeTakenInMillis
+     * @param result is the result returned by a non-void function
+     * @param timeTakenInMillis is the time taken to return the result by a function
      */
     public TimedResult(T result, long timeTakenInMillis) {
         this.result = result;
