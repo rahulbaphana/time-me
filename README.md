@@ -16,13 +16,13 @@
 ***
 
 ## Table of contents:
-* [Latest news](latest-news)
-* [What is time-me?](what-is-time-me)
-* [Core features](core-features)
-* [Project setup after cloning](project-setup-after-cloning)
-* [Example](example)
-    * [Console Timer](example)
-    * [Result Timer](example)
+* [Latest news](https://github.com/rahulbaphana/time-me#latest-news)
+* [What is time-me?](https://github.com/rahulbaphana/time-me#what-is-time-me)
+* [Core features](https://github.com/rahulbaphana/time-me#core-features)
+* [Project setup after cloning](https://github.com/rahulbaphana/time-me#project-setup-after-cloning)
+* [Example](https://github.com/rahulbaphana/time-me#example)
+    * [Console Timer](https://github.com/rahulbaphana/time-me#1-console-timer)
+    * [Result Timer](https://github.com/rahulbaphana/time-me#2-result-timer)
 
 ## Latest news
 * Keep an eye on this, loads of features coming soon :
