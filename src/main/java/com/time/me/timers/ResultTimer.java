@@ -20,7 +20,7 @@ public enum ResultTimer {
     }
 
     public static <T> TimedResult<T> timeMe(Callable<T> callableFunction) {
-        Action<TimedResult<T>> tAction = () -> {
+        Action<TimedResult<T>> timedAction = () -> {
             long startTime = System.currentTimeMillis();
             long timeTakenForExecution;
             try {
@@ -33,6 +33,6 @@ public enum ResultTimer {
                 return new TimedResult<>(timeTakenForExecution);
             }
         };
-        return tAction.time();
+        return timedAction.time();
     }
 }

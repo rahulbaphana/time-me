@@ -37,6 +37,6 @@ public class ExpensiveDataFetcher {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        throw new RuntimeException("Kuch toh gadbad hai daya!");
+        throw new RuntimeException("A professional exception message.");
     }
 }
