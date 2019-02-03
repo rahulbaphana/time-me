@@ -24,4 +24,4 @@ cache:
     - $HOME/.gradle/wrapper     #Cache the gradle
 
 script:
-  - ./gradlew build --scan -s
+  - ./gradlew build jacocoTestReport --scan -s
