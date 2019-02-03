@@ -1,4 +1,7 @@
-apply plugin: 'java'
+plugins {
+    id 'java'
+    id 'com.gradle.build-scan' version '2.1'
+}
 
 group 'com.time.me'
 version '1.0-SNAPSHOT'
@@ -7,10 +10,6 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
-}
-
-plugins {
-    id 'com.gradle.build-scan' version '2.1'
 }
 
 dependencies {
