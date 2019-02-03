@@ -9,6 +9,10 @@ repositories {
     mavenCentral()
 }
 
+plugins {
+    id 'com.gradle.build-scan' version '2.1'
+}
+
 dependencies {
     testCompileOnly(
             'junit:junit:4.12'
@@ -23,4 +27,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+buildScan {
+    licenseAgreementUrl = "https://gradle.com/terms-of-service"
+    licenseAgree = "yes"
 }
