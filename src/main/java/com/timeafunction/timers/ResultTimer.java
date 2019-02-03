@@ -5,6 +5,8 @@ import com.timeafunction.timers.results.TimedResult;
 
 import java.util.concurrent.Callable;
 
+import static java.util.concurrent.Executors.callable;
+
 /**
  * ResultTimer allows to time a function and always returns a result as TimedResult.
  * @see TimedResult
@@ -18,13 +20,7 @@ public enum ResultTimer {
      * @see TimedResult
      */
     public static TimedResult timeMe(Runnable runnable) {
-        long startTime = System.currentTimeMillis();
-        execute(runnable);
-        return new TimedResult<Void>((System.currentTimeMillis() - startTime));
-    }
-
-    private static void execute(Runnable runnable) {
-        runnable.run();
+        return execute(callable(runnable));
     }
 
     /**
