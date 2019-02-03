@@ -1,6 +1,6 @@
 package com.timeafunction.timers;
 
-import com.timeafunction.actions.Action;
+import com.timeafunction.actions.Timeable;
 import com.timeafunction.timers.results.TimedResult;
 
 import java.util.concurrent.Callable;
@@ -35,7 +35,7 @@ public enum ResultTimer {
      * @see TimedResult
      */
     public static <T> TimedResult<T> timeMe(Callable<T> callableFunction) {
-        Action<TimedResult<T>> timedAction = () -> execute(callableFunction);
+        Timeable<TimedResult<T>> timedAction = () -> execute(callableFunction);
         return timedAction.time();
     }
 
