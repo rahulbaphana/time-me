@@ -23,9 +23,8 @@ public enum ResultTimer {
         return new TimedResult<Void>((System.currentTimeMillis() - startTime));
     }
 
-    private static Void execute(Runnable runnable) {
+    private static void execute(Runnable runnable) {
         runnable.run();
-        return null;
     }
 
     /**

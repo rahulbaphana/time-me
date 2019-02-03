@@ -14,7 +14,7 @@ class ConsoleTimerTest {
 
         ConsoleTimer.timeMe(() -> System.out.println("foo"));
         String message = ConsoleTimer.timeMe(dataFetcher::greet);
-        List<String> someDataReturned = ConsoleTimer.timeMe(() -> dataFetcher.fetchDataIn(123l));
+        List<String> someDataReturned = ConsoleTimer.timeMe(() -> dataFetcher.fetchDataIn(123L));
 
         assertEquals("Hello World!", message);
         assertEquals("[Hi, Hello]", someDataReturned.toString());
