@@ -1,7 +1,6 @@
 package com.time.me.timers;
 
 import com.time.me.actions.Action;
-import com.time.me.actions.NoAction;
 import com.time.me.timers.results.TimedResult;
 
 import java.util.concurrent.Callable;
