@@ -2,6 +2,7 @@ package com.timeafunction.timers;
 
 import com.timeafunction.timers.results.TimedResult;
 
+import java.util.Optional;
 import java.util.concurrent.Callable;
 
 /**
@@ -19,7 +20,11 @@ public enum ConsoleTimer {
     public static <T> T timeMe(Callable<T> callableFunction) {
         TimedResult<T> timedResult = ResultTimer.timeMe(callableFunction);
         System.out.println("Timed result :: "+timedResult.toString());
-        return timedResult.getResult();
+        try {
+            return timedResult.getResult();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

@@ -1,12 +1,15 @@
 package com.timeafunction.timers.results;
 
+import java.util.Optional;
+
 /**
  *
  * TimedResult
  * @param <T> is the return type of the result
  */
-public class TimedResult<T> {
+public final class TimedResult<T> {
     private T result;
+    private Exception executionError;
     private Long timeTakenInMillis;
 
     /**
@@ -29,6 +32,15 @@ public class TimedResult<T> {
 
     /**
      *
+     * @param timeTakenInMillis gives the time taken to get the result by a function
+     */
+    public TimedResult(Exception executionError, Long timeTakenInMillis) {
+        this.executionError = executionError;
+        this.timeTakenInMillis = timeTakenInMillis;
+    }
+
+    /**
+     *
      * @return timeTakenInMillis
      */
     public Long getTimeTakenInMillis() {
@@ -39,8 +51,8 @@ public class TimedResult<T> {
      *
      * @return result
      */
-    public T getResult() {
-        return result;
+    public T getResult() throws Exception {
+        return hasException() ? throwException() : result;
     }
 
     /**
@@ -50,5 +62,13 @@ public class TimedResult<T> {
     @Override
     public String toString() {
         return "TimedResult{" + "result=" + result + ", timeTakenInMillis=" + timeTakenInMillis + " millis}";
+    }
+
+    public boolean hasException() {
+        return Optional.ofNullable(executionError).isPresent();
+    }
+
+    private T throwException() throws Exception {
+        throw new Exception(executionError);
     }
 }

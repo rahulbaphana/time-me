@@ -38,7 +38,7 @@ public enum ResultTimer {
             return new TimedResult<>(callableFunction.call(), (System.currentTimeMillis() - startTime));
         } catch (Exception e) {
             e.printStackTrace();
-            return new TimedResult<>((System.currentTimeMillis() - startTime));
+            return new TimedResult<T>(e, (System.currentTimeMillis() - startTime));
         }
     }
 }
