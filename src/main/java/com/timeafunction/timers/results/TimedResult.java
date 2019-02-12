@@ -14,14 +14,6 @@ public final class TimedResult<T> {
 
     /**
      *
-     * @param timeTakenInMillis gives the time taken to get the result by a function
-     */
-    public TimedResult(Long timeTakenInMillis) {
-        this.timeTakenInMillis = timeTakenInMillis;
-    }
-
-    /**
-     *
      * @param result is the result returned by a non-void function
      * @param timeTakenInMillis is the time taken to return the result by a function
      */
@@ -32,7 +24,8 @@ public final class TimedResult<T> {
 
     /**
      *
-     * @param timeTakenInMillis gives the time taken to get the result by a function
+     * @param executionError is the error thrown while executing a function
+     * @param timeTakenInMillis is the time taken to return the result by a function
      */
     public TimedResult(Exception executionError, Long timeTakenInMillis) {
         this.executionError = executionError;
