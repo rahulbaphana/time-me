@@ -44,10 +44,9 @@ public final class TimedResult<T> {
      */
     public T getResult() throws Exception {
         if(hasException()) {
-            return throwException();
-        } else {
-            return result;
+            throwException();
         }
+        return result;
     }
 
     /**
@@ -60,7 +59,7 @@ public final class TimedResult<T> {
                 .isPresent();
     }
 
-    private T throwException() throws Exception {
+    private void throwException() throws Exception {
         throw executionError;
     }
 
