@@ -14,6 +14,7 @@ public enum ConsoleTimer {
      * @param callableFunction is a function that returns a result of Type 'T'
      * @param <T>              is the type of result
      * @return object of type T
+     * @throws Exception in case result itself is an exception
      */
     public static <T> T timeMe(Callable<T> callableFunction) throws Exception {
         TimedResult<T> timedResult = ResultTimer.timeMe(callableFunction);
