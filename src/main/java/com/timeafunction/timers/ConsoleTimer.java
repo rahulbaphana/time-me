@@ -2,7 +2,6 @@ package com.timeafunction.timers;
 
 import com.timeafunction.timers.results.TimedResult;
 
-import java.util.Optional;
 import java.util.concurrent.Callable;
 
 /**
@@ -17,14 +16,10 @@ public enum ConsoleTimer {
      * @param <T> is the type of result
      * @return object of type T
      */
-    public static <T> T timeMe(Callable<T> callableFunction) {
+    public static <T> T timeMe(Callable<T> callableFunction) throws Exception {
         TimedResult<T> timedResult = ResultTimer.timeMe(callableFunction);
         System.out.println("Timed result :: "+timedResult.toString());
-        try {
-            return timedResult.getResult();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        return timedResult.getResult();
     }
 
     /**

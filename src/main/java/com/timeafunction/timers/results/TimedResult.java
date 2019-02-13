@@ -42,10 +42,23 @@ public final class TimedResult<T> {
 
     /**
      *
-     * @return result
+     * @return result or throws exception
+     * @throws Exception when hasException() is True
      */
     public T getResult() throws Exception {
         return hasException() ? throwException() : result;
+    }
+
+    /**
+     *
+     * @return boolean as True if there is an exception or else False
+     */
+    public boolean hasException() {
+        return Optional.ofNullable(executionError).isPresent();
+    }
+
+    private T throwException() throws Exception {
+        throw new Exception(executionError);
     }
 
     /**
@@ -55,13 +68,5 @@ public final class TimedResult<T> {
     @Override
     public String toString() {
         return "TimedResult{" + "result=" + result + ", timeTakenInMillis=" + timeTakenInMillis + " millis}";
-    }
-
-    public boolean hasException() {
-        return Optional.ofNullable(executionError).isPresent();
-    }
-
-    private T throwException() throws Exception {
-        throw new Exception(executionError);
     }
 }
