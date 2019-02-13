@@ -44,7 +44,7 @@ public final class TimedResult<T> {
      */
     public T getResult() throws Exception {
         if(hasException()) {
-            throwException();
+            throw executionError;
         }
         return result;
     }
@@ -57,10 +57,6 @@ public final class TimedResult<T> {
                 .ofNullable(executionError)
                 .filter(Objects::nonNull)
                 .isPresent();
-    }
-
-    private void throwException() throws Exception {
-        throw executionError;
     }
 
     /**
