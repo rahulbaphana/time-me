@@ -29,6 +29,6 @@ class ConsoleTimerTest {
         Executable executableBlockException = () -> ConsoleTimer.timeMe(() -> dataFetcher.throwException(100l));
 
         Exception runtimeException = assertThrows(Exception.class, executableBlockException, "Should throw runtime exception!");
-        assertEquals("java.lang.RuntimeException: A professional exception message.", runtimeException.getMessage());
+        assertEquals("A professional exception message.", runtimeException.getMessage());
     }
 }

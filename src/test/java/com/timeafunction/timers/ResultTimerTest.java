@@ -49,6 +49,6 @@ class ResultTimerTest {
 
         assertTrue(result.hasException(), "Result should hold exception");
         Exception thrownException = assertThrows(Exception.class, result::getResult, "Should throw exception");
-        assertEquals("java.lang.RuntimeException: A professional exception message.", thrownException.getMessage());
+        assertEquals("A professional exception message.", thrownException.getMessage());
     }
 }

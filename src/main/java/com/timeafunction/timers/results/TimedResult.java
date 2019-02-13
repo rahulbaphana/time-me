@@ -58,7 +58,7 @@ public final class TimedResult<T> {
     }
 
     private T throwException() throws Exception {
-        throw new Exception(executionError);
+        throw executionError;
     }
 
     /**
