@@ -43,7 +43,11 @@ public final class TimedResult<T> {
      * @throws Exception when hasException() is True
      */
     public T getResult() throws Exception {
-        return hasException() ? throwException() : result;
+        if(hasException()) {
+            return throwException();
+        } else {
+            return result;
+        }
     }
 
     /**
