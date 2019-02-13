@@ -8,6 +8,7 @@ import static java.util.concurrent.Executors.callable;
 
 /**
  * ResultTimer allows to time a function and always returns a result as TimedResult.
+ *
  * @see TimedResult
  */
 public enum ResultTimer {
@@ -24,7 +25,7 @@ public enum ResultTimer {
 
     /**
      * @param callableFunction is a function that returns a result of Type 'T'
-     * @param <T> is the type of object returned by function execution
+     * @param <T>              is the type of object returned by function execution
      * @return TimedResult holds time taken and result of the 'callableFunction' param
      * @see TimedResult
      */

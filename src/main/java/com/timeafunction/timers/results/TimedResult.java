@@ -1,10 +1,11 @@
 package com.timeafunction.timers.results;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
- *
  * TimedResult
+ *
  * @param <T> is the return type of the result
  */
 public final class TimedResult<T> {
@@ -13,8 +14,7 @@ public final class TimedResult<T> {
     private Long timeTakenInMillis;
 
     /**
-     *
-     * @param result is the result returned by a non-void function
+     * @param result            is the result returned by a non-void function
      * @param timeTakenInMillis is the time taken to return the result by a function
      */
     public TimedResult(T result, long timeTakenInMillis) {
@@ -23,8 +23,7 @@ public final class TimedResult<T> {
     }
 
     /**
-     *
-     * @param executionError is the error thrown while executing a function
+     * @param executionError    is the error thrown while executing a function
      * @param timeTakenInMillis is the time taken to return the result by a function
      */
     public TimedResult(Exception executionError, Long timeTakenInMillis) {
@@ -33,7 +32,6 @@ public final class TimedResult<T> {
     }
 
     /**
-     *
      * @return timeTakenInMillis
      */
     public Long getTimeTakenInMillis() {
@@ -41,7 +39,6 @@ public final class TimedResult<T> {
     }
 
     /**
-     *
      * @return result or throws exception
      * @throws Exception when hasException() is True
      */
@@ -50,11 +47,13 @@ public final class TimedResult<T> {
     }
 
     /**
-     *
      * @return boolean as True if there is an exception or else False
      */
     public boolean hasException() {
-        return Optional.ofNullable(executionError).isPresent();
+        return Optional
+                .ofNullable(executionError)
+                .filter(Objects::nonNull)
+                .isPresent();
     }
 
     private T throwException() throws Exception {
@@ -62,7 +61,6 @@ public final class TimedResult<T> {
     }
 
     /**
-     *
      * @return string representation of the object
      */
     @Override

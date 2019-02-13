@@ -41,7 +41,7 @@ class ResultTimerTest {
     }
 
     @Test
-    void should_return_result_with_exception() {
+    void should_return_timed_result_with_exception() {
         ExpensiveDataFetcher dataFetcher = new ExpensiveDataFetcher();
 
         long timeToFetchData = 123L;
@@ -50,5 +50,15 @@ class ResultTimerTest {
         assertTrue(result.hasException(), "Result should hold exception");
         Exception thrownException = assertThrows(Exception.class, result::getResult, "Should throw exception");
         assertEquals("A professional exception message.", thrownException.getMessage());
+    }
+
+    @Test
+    void should_return_timed_result_without_exception() throws Exception {
+        ExpensiveDataFetcher dataFetcher = new ExpensiveDataFetcher();
+
+        TimedResult<String> result = timeMe(dataFetcher::greet);
+
+        assertFalse(result.hasException(), "Result should not hold any exception");
+        assertEquals("Hello World!", result.getResult());
     }
 }
