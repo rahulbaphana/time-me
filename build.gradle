@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
+    id 'maven'
     id 'maven-publish'
     id 'com.gradle.build-scan' version '1.16'
 }
@@ -80,4 +81,43 @@ task packageSources(type: Jar, dependsOn: 'classes') {
 artifacts {
     archives packageJavadoc
     archives packageSources
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment {
+                MavenDeployment deployment -> signing.signPom(deployment)
+            }
+            repository(url: maven2_url) {
+                authentication(userName: System.getenv('SONATYPE_USERNAME'), password: System.getenv('SONATYPE_PASSWORD'))
+            }
+            snapshotRepository(url: snapshot_url) {
+                authentication(userName: System.getenv('SONATYPE_USERNAME'), password: System.getenv('SONATYPE_PASSWORD'))
+            }
+            pom.project {
+                name project_name
+                packaging 'jar'
+                description project_description
+                url project_url
+                scm {
+                    connection project_scm
+                    developerConnection project_scm
+                    url project_url
+                }
+                licenses {
+                    license {
+                        name project_license_name
+                        url project_license_url
+                    }
+                }
+                developers {
+                    developer {
+                        id project_developer
+                        name project_developer
+                    }
+                }
+            }
+        }
+    }
 }
