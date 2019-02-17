@@ -4,6 +4,7 @@ plugins {
     id 'maven'
     id 'maven-publish'
     id 'com.gradle.build-scan' version '1.16'
+    id 'signing'
 }
 
 javadoc {
@@ -83,6 +84,19 @@ artifacts {
     archives packageSources
 }
 
+gradle.taskGraph.whenReady { taskGraph ->
+    if (taskGraph.allTasks.any { it instanceof Sign }) {
+        allprojects { ext."signing.keyId" = System.getenv('GPG_KEY_ID') }
+        allprojects { ext."signing.secretKeyRingFile" = System.getenv('GPG_KEY_LOCATION') }
+        allprojects { ext."signing.password" = System.getenv('GPG_PASSPHRASE') }
+    }
+    if (taskGraph.allTasks.any { it.name == 'build' || it.name == 'assemble' }) {
+        tasks.findAll { it.name == 'signArchives' || it.name == 'signDocsJar' || it.name == 'signTestJar' }.each { task ->
+            task.enabled = false
+        }
+    }
+}
+
 uploadArchives {
     repositories {
         mavenDeployer {
@@ -121,3 +135,9 @@ uploadArchives {
         }
     }
 }
+
+signing {
+    sign configurations.archives
+}
+
+build.dependsOn.remove(signArchives)
