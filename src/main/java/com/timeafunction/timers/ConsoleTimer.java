@@ -3,6 +3,7 @@ package com.timeafunction.timers;
 import com.timeafunction.timers.results.TimedResult;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 
 /**
  * Console timer is used to print time taken in millis to System out.
@@ -20,6 +21,10 @@ public enum ConsoleTimer {
         TimedResult<T> timedResult = ResultTimer.timeMe(callableFunction);
         System.out.println("Timed result :: " + timedResult.toString());
         return timedResult.getResult();
+    }
+
+    public static <T> Future<T> timeMe(Future<T> future) throws Exception {
+        return new TimerFuture<>(future);
     }
 
     /**

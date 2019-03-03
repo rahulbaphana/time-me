@@ -1,11 +1,14 @@
 package com.timeafunction.timers;
 
+import com.timeafunction.timers.test.data.AsyncDataFetcher;
 import com.timeafunction.timers.test.data.ExpensiveDataFetcher;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -30,5 +33,13 @@ class ConsoleTimerTest {
 
         Exception runtimeException = assertThrows(Exception.class, executableBlockException, "Should throw runtime exception!");
         assertEquals("A professional exception message.", runtimeException.getMessage());
+    }
+
+    @Test
+    void should_print_to_console_time_taken_by_future_execution_in_millis() throws Exception {
+        AsyncDataFetcher dataFetcher = new AsyncDataFetcher();
+
+        assertEquals("something async", ConsoleTimer.timeMe(dataFetcher.fetchAsync()).get());
+        assertThrows(TimeoutException.class, () -> ConsoleTimer.timeMe(dataFetcher.fetchAsync()).get(200, MILLISECONDS));
     }
 }
