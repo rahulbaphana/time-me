@@ -1,8 +1,10 @@
 package com.timeafunction.timers;
 
 import com.timeafunction.timers.results.TimedResult;
+import com.timeafunction.timers.results.TimedFuture;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 
 import static java.util.concurrent.Executors.callable;
 
@@ -13,6 +15,10 @@ import static java.util.concurrent.Executors.callable;
  */
 public enum ResultTimer {
     ;
+
+    public static <T> Future<TimedResult<T>> timeMe(Future<T> future) {
+        return new TimedFuture<>(future);
+    }
 
     /**
      * @param runnable is a function with return type as 'void'

@@ -1,11 +1,13 @@
 package com.timeafunction.timers;
 
-import com.timeafunction.timers.test.data.AsyncDataFetcher;
 import com.timeafunction.timers.test.data.ExpensiveDataFetcher;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeoutException;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
@@ -37,9 +39,12 @@ class ConsoleTimerTest {
 
     @Test
     void should_print_to_console_time_taken_by_future_execution_in_millis() throws Exception {
-        AsyncDataFetcher dataFetcher = new AsyncDataFetcher();
+        ExpensiveDataFetcher dataFetcher = new ExpensiveDataFetcher();
 
-        assertEquals("something async", ConsoleTimer.timeMe(dataFetcher.fetchAsync()).get());
-        assertThrows(TimeoutException.class, () -> ConsoleTimer.timeMe(dataFetcher.fetchAsync()).get(200, MILLISECONDS));
+        ExecutorService service = Executors.newSingleThreadExecutor();
+
+        Callable<String> task = dataFetcher::greet;
+        assertEquals("Hello World!", ConsoleTimer.timeMe(service.submit(task)).get());
+        assertThrows(TimeoutException.class, () -> ConsoleTimer.timeMe(service.submit(task)).get(200, MILLISECONDS));
     }
 }

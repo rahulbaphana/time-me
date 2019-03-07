@@ -1,5 +1,6 @@
 package com.timeafunction.timers;
 
+import com.timeafunction.timers.results.ConsoleLogFuture;
 import com.timeafunction.timers.results.TimedResult;
 
 import java.util.concurrent.Callable;
@@ -23,8 +24,8 @@ public enum ConsoleTimer {
         return timedResult.getResult();
     }
 
-    public static <T> Future<T> timeMe(Future<T> future) throws Exception {
-        return new TimerFuture<>(future);
+    public static <T> Future<T> timeMe(Future<T> future) {
+        return new ConsoleLogFuture<>(future);
     }
 
     /**
