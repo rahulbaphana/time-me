@@ -141,3 +141,14 @@ signing {
 }
 
 build.dependsOn.remove(signArchives)
+
+def uploadAndRelease(def username, def password, def repoDir) {
+    def proc = ['./uploadAndRelease.sh', username, password, repoDir].execute([], file("${rootDir.toString()}/gradle"))
+    proc.waitForProcessOutput(System.out, System.err)
+}
+
+task publishToNexusAndClose(dependsOn: 'publish'){
+    doLast {
+        uploadAndRelease(System.getenv('SONATYPE_USERNAME'), System.getenv('SONATYPE_PASSWORD'), "$rootDir/build/deploy")
+    }
+}
