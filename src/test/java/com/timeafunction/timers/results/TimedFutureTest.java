@@ -4,16 +4,13 @@ import com.timeafunction.timers.futures.TimedFuture;
 import com.timeafunction.timers.test.data.ExpensiveDataFetcher;
 import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TimedFutureTest {
-    private Callable<String> task = () -> new ExpensiveDataFetcher().greet();
+    private ExpensiveDataFetcher dataFetcher = new ExpensiveDataFetcher();
+    private Callable<String> task = () -> dataFetcher.greet();
     private ExecutorService service = Executors.newSingleThreadExecutor();
 
     @Test
@@ -38,5 +35,23 @@ class TimedFutureTest {
 
         assertTrue(future.isDone());
         assertTrue(timedFuture.isDone());
+    }
+
+    @Test
+    void should_return_result_of_wrapped_future() {
+        Future<String> future = service.submit(() -> "result");
+        TimedFuture<String> timedFuture = new TimedFuture<>(future);
+
+        assertEquals("result", timedFuture.get().getResult());
+        assertEquals("result", timedFuture.get(1, TimeUnit.MILLISECONDS).getResult());
+    }
+
+    @Test
+    void should_throw_exception_of_wrapped_future() {
+        Future<String> future = service.submit(() -> dataFetcher.throwException(0));
+        TimedFuture<String> timedFuture = new TimedFuture<>(future);
+
+        assertThrows(RuntimeException.class, () -> timedFuture.get().getResult());
+        assertThrows(RuntimeException.class, () -> timedFuture.get(1, TimeUnit.MILLISECONDS).getResult());
     }
 }
