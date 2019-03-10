@@ -1,5 +1,6 @@
 package com.timeafunction.timers.results;
 
+import com.timeafunction.timers.futures.TimedFuture;
 import com.timeafunction.timers.test.data.ExpensiveDataFetcher;
 import org.junit.jupiter.api.Test;
 

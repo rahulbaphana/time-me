@@ -1,10 +1,16 @@
-package com.timeafunction.timers.results;
+package com.timeafunction.timers.futures;
 
 import com.timeafunction.timers.ResultTimer;
+import com.timeafunction.timers.results.TimedResult;
 
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * A wrapper class over a Future to hold its execution time and result
+ *
+ * @param <T> is the type of the Future
+ */
 public class TimedFuture<T> implements Future<TimedResult<T>> {
   private Future<T> future;
 

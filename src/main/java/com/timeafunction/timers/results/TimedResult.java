@@ -10,7 +10,7 @@ import java.util.Optional;
  */
 public final class TimedResult<T> {
     private T result;
-    private Exception executionError;
+    private RuntimeException executionError;
     private Long timeTakenInMillis;
 
     /**
@@ -26,7 +26,7 @@ public final class TimedResult<T> {
      * @param executionError    is the error thrown while executing a function
      * @param timeTakenInMillis is the time taken to return the result by a function
      */
-    public TimedResult(Exception executionError, Long timeTakenInMillis) {
+    public TimedResult(RuntimeException executionError, Long timeTakenInMillis) {
         this.executionError = executionError;
         this.timeTakenInMillis = timeTakenInMillis;
     }
@@ -40,9 +40,8 @@ public final class TimedResult<T> {
 
     /**
      * @return result or throws exception
-     * @throws Exception when hasException() is True
      */
-    public T getResult() throws Exception {
+    public T getResult() {
         if(hasException()) {
             throw executionError;
         }

@@ -45,6 +45,6 @@ class ConsoleTimerTest {
 
         Callable<String> task = dataFetcher::greet;
         assertEquals("Hello World!", ConsoleTimer.timeMe(service.submit(task)).get());
-        assertThrows(TimeoutException.class, () -> ConsoleTimer.timeMe(service.submit(task)).get(200, MILLISECONDS));
+        assertThrows(RuntimeException.class, () -> ConsoleTimer.timeMe(service.submit(task)).get(200, MILLISECONDS));
     }
 }

@@ -1,7 +1,7 @@
 package com.timeafunction.timers;
 
 import com.timeafunction.timers.results.TimedResult;
-import com.timeafunction.timers.results.TimedFuture;
+import com.timeafunction.timers.futures.TimedFuture;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
@@ -15,10 +15,6 @@ import static java.util.concurrent.Executors.callable;
  */
 public enum ResultTimer {
     ;
-
-    public static <T> Future<TimedResult<T>> timeMe(Future<T> future) {
-        return new TimedFuture<>(future);
-    }
 
     /**
      * @param runnable is a function with return type as 'void'
@@ -39,13 +35,23 @@ public enum ResultTimer {
         return execute(callableFunction);
     }
 
+    /**
+     *
+     * @param future returns a value of type 'T'
+     * @param <T> is the type of object returned by the future
+     * @return future of type TimedResult, that holds the time taken and the result of the future execution
+     */
+    public static <T> Future<TimedResult<T>> timeMe(Future<T> future) {
+        return new TimedFuture<>(future);
+    }
+
     private static <T> TimedResult<T> execute(Callable<T> callableFunction) {
         long startTime = System.currentTimeMillis();
         try {
             return new TimedResult<>(callableFunction.call(), (System.currentTimeMillis() - startTime));
         } catch (Exception e) {
             e.printStackTrace();
-            return new TimedResult<T>(e, (System.currentTimeMillis() - startTime));
+            return new TimedResult<T>(new RuntimeException(e.getMessage(), e.getCause()), (System.currentTimeMillis() - startTime));
         }
     }
 }

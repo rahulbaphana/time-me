@@ -14,7 +14,7 @@ class TimedResultTest {
 
     @Test
     void should_throw_exception_when_result_holds_exception() {
-        TimedResult<String> timedResult = new TimedResult<String>(new Exception("Something broke!"), 1000L);
+        TimedResult<String> timedResult = new TimedResult<String>(new RuntimeException("Something broke!"), 1000L);
 
         Exception exceptionResult = assertThrows(Exception.class, () -> timedResult.getResult(), "should throw exception");
         assertEquals("Something broke!", exceptionResult.getMessage());
@@ -22,7 +22,7 @@ class TimedResultTest {
 
     @Test
     void has_exception() {
-        TimedResult<String> timedResult = new TimedResult<String>(new Exception("Something broke!"), 1000L);
+        TimedResult<String> timedResult = new TimedResult<String>(new RuntimeException("Something broke!"), 1000L);
 
         assertTrue(timedResult.hasException());
     }
