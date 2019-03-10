@@ -15,7 +15,7 @@ public class ExpensiveDataFetcher {
 
     public String greet() {
         try {
-            Thread.sleep(1234);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

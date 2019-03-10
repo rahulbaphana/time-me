@@ -4,7 +4,11 @@ import com.timeafunction.timers.results.TimedResult;
 import com.timeafunction.timers.test.data.ExpensiveDataFetcher;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import static com.timeafunction.timers.ResultTimer.timeMe;
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,5 +64,20 @@ class ResultTimerTest {
 
         assertFalse(result.hasException(), "Result should not hold any exception");
         assertEquals("Hello World!", result.getResult());
+    }
+
+    @Test
+    void should_return_time_taken_for_future_execution_in_millis() throws Exception {
+        ExecutorService service = Executors.newFixedThreadPool(2);
+        Future<TimedResult<List<String>>> future1 = ResultTimer.timeMe(service.submit(() -> new ExpensiveDataFetcher().fetchDataIn(1000)));
+        Future<TimedResult<List<String>>> future2 = ResultTimer.timeMe(service.submit(() -> new ExpensiveDataFetcher().fetchDataIn(1200)));
+
+        TimedResult<List<String>> result1 = future1.get();
+        assertEquals(Arrays.asList("Hi", "Hello"), result1.getResult());
+        assertTrue(result1.getTimeTakenInMillis() >= 1);
+
+        TimedResult<List<String>> result2 = future2.get();
+        assertEquals(Arrays.asList("Hi", "Hello"), result2.getResult());
+        assertTrue(result2.getTimeTakenInMillis() >= 1);
     }
 }

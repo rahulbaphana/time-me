@@ -101,6 +101,12 @@ The same can be used on ```void``` functions as below:
 ```java
 ConsoleTimer.timeMe(() -> new DataFetcher().greet());
 ```
+To time a [Future](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html):
+```java
+ExecutorService service = Executors.newSingleThreadExecutor();
+Future<String> future = ConsoleTimer.timeMe(service.submit(() -> new DataFetcher().greet())));
+future.get();
+```
 
 #### 2. Result Timer
 
@@ -141,7 +147,12 @@ The output on console will look as below:```
 ```java
 The function took :: 3 millis
 ```
-
+A [Future](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html) can be timed as:
+```java
+ExecutorService service = Executors.newSingleThreadExecutor();
+Future<TimedResult<String>> future = ResultTimer.timeMe(service.submit(() -> new DataFetcher().greet())));
+TimedResult<String> result = future.get();
+```
 ## Contributors
 * [Rahul Baphana](https://github.com/rahulbaphana)
 * [Mausam Yede](https://github.com/mausamyede) 
