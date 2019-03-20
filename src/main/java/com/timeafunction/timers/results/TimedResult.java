@@ -1,6 +1,5 @@
 package com.timeafunction.timers.results;
 
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -54,7 +53,6 @@ public final class TimedResult<T> {
     public boolean hasException() {
         return Optional
                 .ofNullable(executionError)
-                .filter(Objects::nonNull)
                 .isPresent();
     }
 
