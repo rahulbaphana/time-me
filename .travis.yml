@@ -26,3 +26,14 @@ script:
 after_success:
   - codecov
   - bash <(curl -s https://codecov.io/bash)
+
+deploy:
+  provider: releases
+  api_key:
+    secure: apk0ixV7f1Fh4U52VF2XxbIh9u9BavmGwKgBQ7oU6IBOYdghxlhrf4Y6jcb8G9ZgMNL5bmscOWLXqgNUCUBpAUl74XHnZc65gBM9k2y5wWyghMsFQhQr/RsG0LivGcSh4p4sI/bTzlruA1nIysYDqdw1NcWtyXicULgxdIS6zE8a/G21tdhKaxQ81t9yfGkVdCEpZ3ROdZ5YiHCZ7+Y0QvlAvKx+OUDMcdBvTzmle0pVtBUWXY1Ei+CU/NFdlWDVH7LXQSHJYYWJxPoi0r8VGn+G8EWGIux7i6gqIWzq0JCHDtuzqJPCgr+Z3ByP0zh0bA5F9L1Giew5UyANexCPuEahLxRHPF79QkwM343/iZRFrfYbSiyRIRqd7giNfzC4Xw4PgtJy6CDI81At+9aV8NRyTuWXR37cHG1X3DrZ6CN79lYto4gM3JwYOtgHIJhQk0KyieMNPAwV4MLUYzNUp6yNjrGRTAgfSAm+SfqGEMyPK06XxO9h1/q8AGbDXXVAD3TAvxnQbG2/LLQTwX7KoioLWIJYrkn6yNh7RUCVRN5IWBZKdZlKyCNG2rYC9Y1mVVODeYnvE5esWfyDcWmoMsK7EV9OdpEtwqR7CbqX5sbo8/Cmc8wXPqp0PlMSiQJzfbtvOQ+O/eR8s2QUTutVwLWvCOkTJmCcHoLk4poVSY8=
+  file:
+    - build/libs/time-me-0.1-SNAPSHOT.jar
+  skip_cleanup: true
+  on:
+    repo: rahulbaphana/time-me
+    tags: true
