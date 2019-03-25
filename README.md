@@ -16,6 +16,7 @@
 ***
 
 ## Table of contents:
+* [Motivation](https://github.com/rahulbaphana/motivation)
 * [Latest news](https://github.com/rahulbaphana/time-me#latest-news)
 * [What is time-me?](https://github.com/rahulbaphana/time-me#what-is-time-me)
 * [Core features](https://github.com/rahulbaphana/time-me#core-features)
@@ -26,9 +27,19 @@
 * [Contributors](https://github.com/rahulbaphana/time-me#contributors)
 * [License](https://github.com/rahulbaphana/time-me#license)
 
+
+## Motivation
+Below code snippet in all the code bases i worked on made write this library:
+```
+long startTime = System.currentTimeMillis();
+object.doExpensiveOperation();
+System.out.println("Time taken :: " + (System.currentTimeMillis() - startTime) + " millis");
+```
+
 ## Latest news
+* Recent Releases:
+    * Timing futures has been released [here](https://github.com/rahulbaphana/time-me/releases/tag/v0.1)
 * Keep an eye on this, loads of features coming soon :
-    * Timing inside futures
     * Timing in nano-seconds
     
 and many more...
