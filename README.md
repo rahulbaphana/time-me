@@ -29,7 +29,7 @@
 
 
 ## Motivation
-Below code snippet in all the code bases i worked on made write this library:
+Below code snippet in all the code base I worked on made me write this library:
 ```
 long startTime = System.currentTimeMillis();
 object.doExpensiveOperation();
