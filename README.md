@@ -16,7 +16,7 @@
 ***
 
 ## Table of contents:
-* [Motivation](https://github.com/rahulbaphana/motivation)
+* [Motivation](https://github.com/rahulbaphana/time-me#motivation)
 * [Latest news](https://github.com/rahulbaphana/time-me#latest-news)
 * [What is time-me?](https://github.com/rahulbaphana/time-me#what-is-time-me)
 * [Core features](https://github.com/rahulbaphana/time-me#core-features)
