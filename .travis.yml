@@ -28,17 +28,18 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 before_deploy:
-  git fetch --tags
-  current_tag=$(git tag | tail -1)
-  echo $current_tag
-  current_version="${current_tag:(-1)}"
-  echo $current_version
-  new_version=$((current_version+1))
-  new_tag="v0.$new_version"
-  echo $new_tag
-  mv build/libs/time-me-0.1-SNAPSHOT.jar build/libs/time-me-0.1.$new_version.jar
-  export PATCH_VERSION=$new_version
-  echo "Deploying time-me-0.1.$new_version.jar"
+  - git fetch --tags
+  - current_tag=$(git tag | tail -1)
+  - echo "current tag $current_tag"
+  - current_version="${current_tag:(-1)}"
+  - echo "current version $current_version"
+  - new_version=$((current_version+1))
+  - echo "new version $new_version"
+  - new_tag="v0.$new_version"
+  - echo "new tag $new_tag"
+  - mv build/libs/time-me-0.1-SNAPSHOT.jar build/libs/time-me-0.1.$new_version.jar
+  - export PATCH_VERSION=$new_version
+  - echo "Deploying time-me-0.1.$new_version.jar"
 
 deploy:
   provider: releases
@@ -53,9 +54,9 @@ deploy:
     tags: false
 
 after_deploy:
-  git fetch --tags
-  current_tag=$(git tag | tail -1)
-  echo $current_tag
-  current_version="${current_tag:(-1)}"
-  echo $current_version
-  mv build/libs/time-me-0.1.$current_version.jar build/libs/time-me-0.1-SNAPSHOT.jar
+  - git fetch --tags
+  - current_tag=$(git tag | tail -1)
+  - echo $current_tag
+  - current_version="${current_tag:(-1)}"
+  - echo $current_version
+  - mv build/libs/time-me-0.1.$current_version.jar build/libs/time-me-0.1-SNAPSHOT.jar
