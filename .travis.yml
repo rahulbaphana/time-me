@@ -28,6 +28,8 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 before_deploy:
+  - git config --local user.name "mausamyede"
+  - git config --local user.email "mausam.yede1@gmail.com"
   - git fetch --tags
   - current_tag=$(git tag | tail -1)
   - echo "current tag $current_tag"
