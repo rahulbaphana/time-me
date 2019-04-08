@@ -28,6 +28,7 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 before_deploy:
+  - git config --global mausam.yede1@gmail.com publish@travis.github && git config --global mausamyede "Travis"
   - git fetch --tags
   - current_tag=$(git tag | tail -1)
   - echo "current tag $current_tag"
@@ -53,7 +54,8 @@ deploy:
   skip_cleanup: true
   on:
     repo: rahulbaphana/time-me
-    tags: false
+    branch: master
+    tags: true
 
 after_deploy:
   - git fetch --tags
