@@ -55,7 +55,7 @@ deploy:
   on:
     repo: rahulbaphana/time-me
     branch: master
-    tags: true
+    tags: false
 
 after_deploy:
   - git fetch --tags
