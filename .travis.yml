@@ -28,8 +28,6 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 before_deploy:
-  - git config --local user.name "mausamyede"
-  - git config --local user.email "mausam.yede1@gmail.com"
   - git fetch --tags
   - current_tag=$(git tag | tail -1)
   - echo "current tag $current_tag"
@@ -64,3 +62,7 @@ after_deploy:
   - current_version="${current_tag:(-1)}"
   - echo $current_version
   - mv build/libs/time-me-0.1.$current_version.jar build/libs/time-me-0.1-SNAPSHOT.jar
+
+env:
+  global:
+    secure: SOhDayLlwB5gzHzY10BGnNhKlQopRTrWQX1M+FtilVzrHHgRaVMfvVQVWuPt7OttXqAUrmgMFApAcAdv1GgGMsJq5n54ncQODW/tG4j13pvDQX4pFVH6N12Vc+qQMeYMzN4dwH1/ELF2Y1BBPsylnlPYlPuQe4IG92U16Mvt7HBGkmGBb0ykRMAkQFGVTZbtv6jQgJjB0EcBrVY0oTeZvg6IfqUfw3f8IEjL15wwcGJpV+xaC1kqAQH3hvTtsoEeT4Esfaf0z1nUpPeCFIljvZEruiSZZyt+XgpvDkvNBwfwUpSO6PzsFUhgvRB1f7YpEmMi6VB9vC20d453/MbRawWgb5IRVzG6/A5WEo0uO/MB5Fvkeqi1RZjl7nP1YWl2xLqLncE1ghcDG+kOaXCFAxQrGvrqmBra8kSwpVW4TjeKER/2TP7i407FKv4b0FBvja2Txz77HrxkaL8GbqZwPUW+zNZb1VYJqKMlsS7/ZghSrZhYWOF4yuwPiw//zDFf1tnAVMVUycmnOAa/QKMyFPRUv/QEBUDoiECfF3WGxxIHavGPGiNxnX9zQTK+eofm1BFOlq9PIbTjcLSy0LefTzijjPUAiXk9fXH2uzSIrNAOWWKuCYgPQMjKy6lk0+RzlNrg0bEXsLdxJl7wO6KW8dQedAIj43evKxHlAlhlzro=
