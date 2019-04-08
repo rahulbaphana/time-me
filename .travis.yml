@@ -50,7 +50,7 @@ deploy:
   skip_cleanup: true
   on:
     repo: rahulbaphana/time-me
-    tags: true
+    tags: false
 
 after_deploy:
   git fetch --tags
