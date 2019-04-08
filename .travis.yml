@@ -27,40 +27,13 @@ after_success:
   - codecov
   - bash <(curl -s https://codecov.io/bash)
 
-before_deploy:
-  - git config --global user.email publish@travis.github && git config --global user.name "Travis"
-  - git fetch --tags
-  - current_tag=$(git tag | tail -1)
-  - echo "current tag $current_tag"
-  - current_version="${current_tag:(-1)}"
-  - echo "current version $current_version"
-  - new_version=$((current_version+1))
-  - echo "new version $new_version"
-  - new_tag="0.1.$new_version"
-  - echo "new tag $new_tag"
-  - git tag -a $new_tag -m "Auto generated tag"
-  - git push origin $new_tag
-  - mv build/libs/time-me-0.1-SNAPSHOT.jar build/libs/time-me-0.1.$new_version.jar
-  - export PATCH_VERSION=$new_version
-  - echo "Deploying time-me-0.1.$new_version.jar"
-
 deploy:
   provider: releases
   api_key:
     secure: YuFwq6wVUnvjiXD67grWdL2zEC8LkgMLTWGCclluwBMEEY4ubJDBiAdrhi4xHDZ9QSIXPpI3gqX+Y4OuMC3SKeHH5Vv8e4MBv2ggxfR3Xlz+5ZWnDHc/uBhtuSip+88jqegE2TIk1YR0Tz0j4QuwPCYQU9CLQNZ28GUhO17RSsKWhCOc98W2KimoF1q9ubRiwB+e36iEXCcilINyr2j9dmTZPRnlAugPBVDbu3xrK06eYB/Li1MZeOvhKDkCbRNQitovX0NMnuiBv+7CC2Z5fxxhOBTsDk2T8VnYz1rZcSstD8Yiq2zaCY4LHt89odqCPGv5lVQxGK2RpAusc2wmGwXJ+F8JJvZQfEls2xoVwMX5tTlP66LVaqK0NvuJr7UUKsO6y2il1SLPcXvAGKxBbSnv0N9qyba1TVA1WSbPx+wNEy6LDftkvxpPEiB0J8c37dEfzH/XQoFKjrjDNFfP0qBvbsvAvTazqjyISNz4ZEpnNt3W4BK7yp/1qZG6QtZMXIwYs6svxIYoTQt26DohR5EPRSllrwqada+8IZf5MeE4VysE/Uadm129nZDql4Ru/KQvhc6d7lHYrqPa98cF4y4wcQg5pqYConwWRWiMmdtiHjG4g7U/ws2OJ5XnmmJqqezCB5caGZ4wnT0DDSNlTXzTzj5HdZesADIxXiw83jQ=
-  file_glob: true
   file:
-    - build/libs/time-me-0.1-${PATCH_VERSION}.jar
+    - build/libs/time-me-0.1-SNAPSHOT.jar
   skip_cleanup: true
   on:
     repo: rahulbaphana/time-me
-    branch: master
-    tags: false
-
-after_deploy:
-  - git fetch --tags
-  - current_tag=$(git tag | tail -1)
-  - echo $current_tag
-  - current_version="${current_tag:(-1)}"
-  - echo $current_version
-  - mv build/libs/time-me-0.1.$current_version.jar build/libs/time-me-0.1-SNAPSHOT.jar
+    tags: true
