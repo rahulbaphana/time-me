@@ -22,8 +22,6 @@ then
     exit 0;
 fi
 
-: ${GITHUB_SECRET_TOKEN:?"GITHUB_SECRET_TOKEN needs to be set in .travis.yml!"}
-
 export GIT_COMMITTER_EMAIL="travis@travis.org"
 export GIT_COMMITTER_NAME="Travis CI"
 
