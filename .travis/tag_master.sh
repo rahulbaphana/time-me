@@ -21,7 +21,7 @@ then
     exit 0;
 fi
 
-if [[ "${MANUAL_RELEASE_TRIGGERED}" != "true" ]];
+if [ "${MANUAL_RELEASE_TRIGGERED}" != "true" ];
 then
     echo "$FUNCTION_NAME: Exiting! This is not a release build."
     exit 0;

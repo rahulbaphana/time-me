@@ -10,13 +10,13 @@ echo "$FUNCTION_NAME: $GITHUB_REPO"
 echo "$FUNCTION_NAME: TRAVIS_BRANCH = $TRAVIS_BRANCH"
 echo "$FUNCTION_NAME: TRAVIS_PULL_REQUEST = $TRAVIS_PULL_REQUEST"
 
-if [[ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]];
+if [ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ];
 then
     echo "$FUNCTION_NAME: Exiting! Branch is not $SOURCE_BRANCH: ($TRAVIS_BRANCH)"
     exit 0;
 fi
 
-if [[ "$TRAVIS_PULL_REQUEST" != "false" ]];
+if [ "$TRAVIS_PULL_REQUEST" != "false" ];
 then
     echo "$FUNCTION_NAME: Exiting! This is a Pull Request: $TRAVIS_PULL_REQUEST"
     exit 0;
