@@ -32,6 +32,7 @@ notifications:
 before_install:
   - pip install --user codecov
   - chmod -R ug+x $HOME/.travis
+  - echo $HOME
   - sh $HOME/.travis/install.sh
 
 before_cache:
