@@ -60,7 +60,7 @@ repositories {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'com.timeafunction'
+            groupId = 'io.github.rahulbaphana'
             artifactId = 'time-me'
             version = '0.1-SNAPSHOT'
 
