@@ -32,6 +32,7 @@ notifications:
 before_install:
   - pip install --user codecov
   - chmod -R ug+x .travis
+  - echo $GITHUB_SECRET_TOKEN
   - ls -lrt $HOME
   - sh .travis/install.sh
 
