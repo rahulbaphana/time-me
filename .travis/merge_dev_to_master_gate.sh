@@ -2,7 +2,7 @@
 
 if [[ ${TRAVIS_TEST_RESULT} -eq 0 ]];
 then
-    .travis/merge-dev-to-master.sh
+    .travis/merge_dev_to_master.sh
     RETURN_VALUE=$?
     if [[ "$RETURN_VALUE" != "0" ]];
     then

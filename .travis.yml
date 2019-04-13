@@ -48,9 +48,9 @@ script:
   - ./gradlew build jacocoTestReport --scan -s
   - chmod -R ug+x .travis
   - sh .travis/build.sh
-  - sh .travis/merge-dev-to-master-gate.sh
-  - sh .travis/deploy-gate.sh
-  - sh .travis/tag-master-gate.sh
+  - sh .travis/merge_dev_to_master_gate.sh
+  - sh .travis/deploy_gate.sh
+  - sh .travis/tag_master_gate.sh
 
 after_success:
   - codecov
