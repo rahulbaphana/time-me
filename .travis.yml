@@ -10,8 +10,8 @@ env:
   - secure: "V7HmOTBBupVSwKS57o2TWC4RElKZxXz9U0fbkZ9ZBhK609QXj/jHxwRkb4uqHxmpsY49WJqlCOkmkakseLLu2eQE/PRiylfclMJKDOtS4zdNc68xsW2lQ9g6uUhvO4R0sOg37zZoVrGYoYCb2f31rlmyVKmdNBFxpOpfIUAwH4ip++vsXUkUXD0GB5DERIw4jRCew4BlgMARACW1EFDgLnXYHJ5KVeN953vEkpkuNgoL0TjTRSN63M5YIMAYpIFMbaJyqQmvN7sLzT3RVaBvkqbNwNGtIC6yJModnFzZzCZ7Is4lTXfEJMo9dWfSg8zhYTlhKz8NjAUVOHrX9QI0agg6ZtKbbJtXhhc9bTvRIH+s9scEA+mC3q2hiCivVN6GG5gpkCNH03Wf23aiM/Lq8y6qBaa/Lnx0xYH7A1yamrX3I4E92HrQfEDXB36d+eh2rb7OgBO2yJ0euCGBDz/Ib+rpytVgOIJnu38P3uXKGe+aWGPlGp++RwaDZAK1dk257BbHBhQ67Pwo7ze2wSZAmdiuNY4VSm9LWU8aMcu+3hksTmw2BPhPptHBph27B4+WbiIgAWiHFvclipe/Zzj/YPiqCEsRG2mTDttTWq9ULhlEMYvkHlXnU4L1shFU33HeGFXQ4RkaCQ3NU6ue2hPzdas/mAbv3hm2+jDxgYVwZjk="
   - # GPG_PASSPHRASE
   - secure: "WVCD0Ri+rqxBiE6iP/qH5fnE3ZQgT6bsFI4wXkiaAtUokkjrERybQUDV8wEcjY9B8Ch7Z7JP3XFOZPuaWDGC8RnDE2EwCdKDNdgYeE7T2nGTBwVdpU1AxYriYRKTtJ+w6m/pdUebD9c10WsbAghxbPj57fLp7SaH4M/w/5+Trd7KSctg2J0rtOeZT5A6KIivO/nh9RH0Px0lmia21u8nqb0l5Mp906JL3PaMDRGzFu6kBTaiM8fewgdyP8azDYa6JUHMQdHdfJ9sOKcMIDD/cEVd34YbmvwmtFMqliEqXuYKSmy8Sk+BWp41LySvypB7LeO1PFs296/vfIuf280K+pq3u8uoajxiyuXNT4ebVwSGVfeg/aQQG/T7wXW/eJHlR8lZL9zf1ww21Xb9fXIwm+VhKp+0BT9bPnjkJ0E9OlDVa1Ho/g1F+VrL1L+/Z+0pXIOdkiJCIYwUumLbC/Zfftu2DrXQlGIc6G5Z5MSpIkdHeZehxzej2VHyp0YQRxtWdoB0fehQU8MITI9kBqDJteJYxm6wIWLTGdGGomHy9qDA6y2E2D0UX2qJFI7Pnly65Xndga3GjqKaIL1BvyHLhVeFObgi/gho18GknhthvIoQW18S771wCmdGuck7tLsdC9kITivIVHuobnbZFCn3O4zxx/GyUp1xWQhdanNnQaM="
-  - GPG_KEY_LOCATION=$HOME/.travis/secret.gpg
-  - ENCRYPTED_GPG_KEY_LOCATION=$HOME/.travis/secret.gpg.enc
+  - GPG_KEY_LOCATION=".travis/secret.gpg"
+  - ENCRYPTED_GPG_KEY_LOCATION=".travis/secret.gpg.enc"
 
 branches:
   only:
@@ -31,10 +31,9 @@ notifications:
 
 before_install:
   - pip install --user codecov
-  - chmod -R ug+x $HOME/.travis
-  - echo $HOME
+  - chmod -R ug+x .travis
   - ls -lrt $HOME
-  - sh $HOME/.travis/install.sh
+  - sh .travis/install.sh
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -47,11 +46,11 @@ cache:
 
 script:
   - ./gradlew build jacocoTestReport --scan -s
-  - chmod -R ug+x $HOME/.travis
-  - $HOME/.travis/build.sh
-  - $HOME/.travis/merge-dev-to-master-gate.sh
-  - $HOME/.travis/deploy-gate.sh
-  - $HOME/.travis/tag-master-gate.sh
+  - chmod -R ug+x .travis
+  - sh .travis/build.sh
+  - sh .travis/merge-dev-to-master-gate.sh
+  - sh .travis/deploy-gate.sh
+  - sh .travis/tag-master-gate.sh
 
 after_success:
   - codecov
