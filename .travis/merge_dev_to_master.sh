@@ -42,3 +42,5 @@ echo "Pushing to $GITHUB_REPO"
 # Redirect to /dev/null to avoid secret leakage
 echo "token : $GITHUB_SECRET_TOKEN"
 git push "https://$GITHUB_SECRET_TOKEN@github.com/$GITHUB_REPO" ${MERGE_BRANCH} > /dev/null 2>&1
+echo "finished pushing with below status"
+echo $?

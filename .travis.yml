@@ -1,6 +1,7 @@
 env:
   global:
-  - GITHUB_SECRET_TOKEN="9e75095d63f54007cfda510d21f1265bb7f95f42"
+  - # GITHUB_SECRET_TOKEN
+  - secure: "Yhf3pFXeOh7tTxel5vo2565JSI5FFbqK4ZplkmJWF4+A/19ewirNLkOpRcvQnduzIkpswf2Y21Ng6cqPnWs0ZGK33fSuD9M0xaFTDDWg36aYtA75ph1jCFqWkEItAjGgcd5GhtIKADVH52AVIJ5QwB4aMegwqInDncXYCfcrX6itR7SpLQuPZ8DaDroq8em6+1oIKwg/Msm6lsZ5rtjCe5tnDoyT7fF5tqWNU1YjX3TbouDAeZvjJKfJvGDybyn/CYMFvMzP9QUq4GHyWW3HVgXIJNH7Qa8A7uDsjIzu2bZS/+oZC0utZdxZN4Yd+kUt/jKt3UDtHpmGWGeGrp7AXVPPXgW+aaWdcwhEz9SO0vgx17kS5/P2viZId6lF8W3ogTpPKLiIv4U+AJv6JaduwqySNAWha+acdMQpyZGKdHAUcqi44YJ9AeI5sdxAyk0fLwp3gDOYiUmDKiLo7t5CSU1kYA5YIpZz+U6k1oOy5xVJpr17mYsiy/vswy3kZuaEZ8XsyWXODlnD4JfFEpxmXdN2slg0QAW/UZQB3oqlpTAbpAO/Qg2OS/YDR+Pui+4lCAKahWhySmA21+u0GvROByH9oOYonAiWAyogyGdf2adlXI/XIIc8ZzjhqzQoSDURNU9xU21//5DtMxiQfImf6cGOVDBGh2yeYPlcbO9xYEE="
   - # SONATYPE_USERNAME
   - secure: "JM/iVNkijOd9JiM2jj0qEvBQw1BtD6vhrEjD+f/mV6+72ZQd94W0lihRk14ey4dtwegdGC68qgLk648gDKy1911JeYHR3TzwcW4MDylehVzUmPXAqCv3TZLnedrDpTK/DJMekA2lBb+oB6L922vlOzfixRW2zVH0p/tFngblNQP3lKojatFebMzQl+e4ZBkJeQsCq+xY+1YYR+23Rc3DqJCrO7KedLMUyevp1hTwIOdD2SkNekNSQAK9UZ1wWryrFRqcUxZXzCZRE+dyb0ZkUe+8RTITjqVPmQTxfKP/Ax+hIinJrnceNUyPf1S5lO0f6UHaoh8lPKVQh+9WiA48+DxxbV89aGopIM+DNO+8vq44sVNzo7kSk6HYfDT6fU71bRKGPNSTmZH4V/2HaIdsgpW2SJabgZR6xMQNZIYJpxBq4EZZUVL+TWVOusvxkftDOnG4inaFEUgdsQIb+mwQSs+9QsDu190gIQZdqFdhn/Ywa/9A+ETGurjluX1IX3YJCsaZUBaQJiTcjkkPRUJplm05Rym0OGKA0iRVPl+sYSYR+2lloT9lDnCOKgCozC2Tftzj0ZQTnOmGEL/vnae6U8UgBDjlMBeghuoeJNnW9LGsq7KjQfeYYFy7g6Y0c5s8kTKR1Bv3MIBL5CT4Ii3vwTl94kY0NzofBELYPV4Yfjk="
   - # SONATYPE_PASSWORD
@@ -50,11 +51,14 @@ cache:
 
 script:
   - ./gradlew build jacocoTestReport --scan -s
+  - set -e
   - chmod -R ug+x .travis
+  - set -e
   - sh .travis/build.sh
   - sh .travis/merge_dev_to_master_gate.sh
   - sh .travis/deploy_gate.sh
   - sh .travis/tag_master_gate.sh
+  - sh .travis/tag_master.sh
 
 after_success:
   - codecov
