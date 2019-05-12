@@ -32,12 +32,7 @@ notifications:
 before_install:
   - pip install --user codecov
   - chmod -R ug+x .travis
-  - echo $GITHUB_SECRET_TOKEN
-  - echo $SONATYPE_USERNAME
-  - echo $SONATYPE_PASSWORD
-  - echo $GPG_KEY_ID
-  - echo $GPG_KEY_LOCATION
-  - ls -lrt $HOME
+  - ls -lrt .travis
   - sh .travis/install.sh
 
 before_cache:
