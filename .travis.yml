@@ -33,7 +33,8 @@ before_install:
   - pip install --user codecov
   - chmod -R ug+x .travis
   - ls -lrt .travis
-  - sh .travis/install.sh
+  - openssl aes-256-cbc -K $encrypted_e4e4268fce40_key -iv $encrypted_e4e4268fce40_iv -in ${ENCRYPTED_GPG_KEY_LOCATION} -out ${GPG_KEY_LOCATION} -d
+  - sh -lrt .travis
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
