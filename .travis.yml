@@ -34,7 +34,7 @@ before_install:
   - chmod -R ug+x .travis
   - ls -lrt .travis
   - sh .travis/install.sh
-  - sh -lrt .travis
+  - ls -lrt .travis
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
