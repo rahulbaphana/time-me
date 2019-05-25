@@ -26,10 +26,14 @@ body='
     }
 }'
 
+if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ];
+then
+echo "Making a release with body $body"
 curl -s -X POST \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Travis-API-Version: 3" \
     -H "Authorization: token $TRAVIS_PERSONAL_TOKEN" \
     -d "$body" \
-    https://api.travis-ci.org/repo/${GITHUB_ORGANIZATION}%2F${GITHUB_REPOSITORY_NAME}/requests
+    https://api.travis-ci.com/repo/${GITHUB_ORGANIZATION}%2F${GITHUB_REPOSITORY_NAME}/requests
+fi

@@ -55,6 +55,7 @@ script:
   - sh .travis/deploy_gate.sh
   - sh .travis/tag_master_gate.sh
   - sh .travis/tag_master.sh
+  - sh .travis/trigger_release.sh
 
 after_success:
   - codecov
