@@ -33,7 +33,7 @@ before_install:
   - pip install --user codecov
   - chmod -R ug+x .travis
   - ls -lrt .travis
-  - openssl aes-256-cbc -K $encrypted_e4e4268fce40_key -iv $encrypted_e4e4268fce40_iv -in ${ENCRYPTED_GPG_KEY_LOCATION} -out ${GPG_KEY_LOCATION} -d
+  - sh install.sh
   - sh -lrt .travis
 
 before_cache:
