@@ -33,7 +33,7 @@ before_install:
   - pip install --user codecov
   - chmod -R ug+x .travis
   - ls -lrt .travis
-  - sh install.sh
+  - sh .travis/install.sh
   - sh -lrt .travis
 
 before_cache:
