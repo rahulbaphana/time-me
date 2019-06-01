@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+echo "TRAVIS_TEST_RESULT: $TRAVIS_TEST_RESULT"
 if [ ${TRAVIS_TEST_RESULT} -eq 0 ];
 then
     .travis/deploy.sh

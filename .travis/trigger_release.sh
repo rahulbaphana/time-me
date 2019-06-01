@@ -25,6 +25,8 @@ body='
 }'
 
 echo "Making a release with body $body"
+echo "********************************"
+echo ""
 curl -s -X POST \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
@@ -32,3 +34,5 @@ curl -s -X POST \
     -H "Authorization: token $TRAVIS_PERSONAL_TOKEN" \
     -d "$body" \
     https://api.travis-ci.org/repo/${GITHUB_ORGANIZATION}%2F${GITHUB_REPOSITORY_NAME}/requests
+echo ""
+echo "Request made..."
