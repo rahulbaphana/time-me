@@ -19,7 +19,7 @@ function runWithRetry()
 	done
 }
 
-export ATLAS_PROFILE_ID=1442a4f451744
+export STAGING_PROFILE_ID=9ab3dc2a892b90
 export DESCRIPTION_PAYLOAD="<promoteRequest>\
     <data>\
         <description>Atlas Release</description>\
@@ -31,7 +31,7 @@ export STAGING_ID=$(curl -s -u ${SONATYPE_USERNAME}:${SONATYPE_PASSWORD} \
     -X POST \
     -H "Content-Type:application/xml" \
     -d "$DESCRIPTION_PAYLOAD" \
-    "$API_ENDPOINT/staging/profiles/$ATLAS_PROFILE_ID/start" \
+    "$API_ENDPOINT/staging/profiles/$STAGING_PROFILE_ID/start" \
     | perl -nle 'print "$1" if ($_ =~ /.*<stagedRepositoryId>(.*)<\/stagedRepositoryId>.*/g);' \
     | awk '{$1=$1};1')
 
@@ -53,7 +53,7 @@ curl --fail -s -u ${SONATYPE_USERNAME}:${SONATYPE_PASSWORD} \
     -X POST \
     -H "Content-Type:application/xml" \
     -d "$CLOSE_PAYLOAD" \
-    "$API_ENDPOINT/staging/profiles/$ATLAS_PROFILE_ID/finish"
+    "$API_ENDPOINT/staging/profiles/$STAGING_PROFILE_ID/finish"
 
 echo "sleep 120 before releasing (to let validation happen)"
 sleep 120
